@@ -1,4 +1,6 @@
 // Select the "Repeat" button
+import gsap from "gsap";
+
 const repeat = document.querySelector(".repeat");
 
 // Sample data for each day of the week
@@ -33,7 +35,7 @@ function renderChart() {
     // Create the bar itself
     const bar = document.createElement("div");
     bar.className = "bar";
-    const barHeight = (item.value / maxValue) * (chartHeight - 60);
+    const barHeight = (item.value / maxValue) * (chartHeight - 120);
     bar.style.height = `${barHeight}px`;
 
     // Create the label under the bar
@@ -47,6 +49,12 @@ function renderChart() {
     chart.appendChild(wrapper);
 
     // 👇 This is where GSAP animation will go later
+    gsap.to(bar, {
+      scaleY: 1,
+      duration: 3,
+      ease: "back.out",
+      delay: i * 0.1,
+    });
   });
 }
 
